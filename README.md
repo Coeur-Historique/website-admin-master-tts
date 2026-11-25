@@ -44,7 +44,12 @@ Nécessite `GOOGLE_TTS_SA_KEY_B64` dans l'environnement et `ffmpeg` installé. G
 en entier. Refuse et s'arrête si le plafond mensuel de 1M caractères serait dépassé.
 
 Le workflow `.github/workflows/generate-episode.yml` fait la même chose via
-`workflow_dispatch`, en récupérant l'article directement depuis `myselion4nonprofit`.
+`workflow_dispatch`. Mode par défaut depuis le 25/11/2026 (commande `/blog` d'ai-center) :
+la copie exacte de l'article publié est d'abord déposée dans ce dépôt,
+`sources/<domaine>/<slug>.<langue>.mdx`, puis le workflow est lancé avec
+`article_local_path` ; aucun jeton inter-dépôts n'est nécessaire (l'ancien
+`ARTICLE_SOURCE_TOKEN` a expiré : « Bad credentials » le 25/11/2026). L'ancien mode
+(`article_repo` + `article_path`, lecture via `ARTICLE_SOURCE_TOKEN`) reste disponible.
 
 ## Structure
 

@@ -2,10 +2,19 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
   <channel>
     <title>Cœur Historique — Le Blog en Podcast</title>
-    <link>https://www.charli.world</link>
+    <link>https://www.dubois-tihon.be</link>
     <description>Les articles du blog de l&apos;ASBL Cœur Historique, lus à voix haute.</description>
     <language>fr-be</language>
     <itunes:explicit>false</itunes:explicit>
+    <item>
+      <title>Devant l&apos;école, la façon dont nous nous garons est une leçon pour nos enfants</title>
+      <description>Chaque matin, la même scène se répète devant les grilles de l&apos;école : double file, trottoir occupé, passage piéton bloqué. Ce que nous montrons à nos enfants en nous garant vaut tous les discours que nous leur tenons à la maison.</description>
+      <link>https://www.dubois-tihon.be/fr/blog/devant-ecole-facon-garons-lecon-enfants/</link>
+      <guid isPermaLink="false">01a2142b-e765-76a9-87d1-a2252520bf22</guid>
+      <pubDate>Wed, 25 Nov 2026 19:25:51 GMT</pubDate>
+      <enclosure url="https://cdn.jsdelivr.net/gh/Coeur-Historique/MASTER-TTS@main/audio/01a2142b-e765-76a9-87d1-a2252520bf22.mp3" length="1484300" type="audio/mpeg" />
+      <itunes:duration></itunes:duration>
+    </item>
     <item>
       <title>Optimizar la gestión del tiempo: la fuerza de una agenda compartida</title>
       <description>Deje de dejar que su planificación gobierne su vida. Descubra cómo una agenda compartida en equipo mejora la eficiencia.</description>

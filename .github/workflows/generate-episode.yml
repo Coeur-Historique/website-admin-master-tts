@@ -18,13 +18,16 @@ on:
         description: "URL du site (racine du flux RSS)"
         required: true
         default: "https://coeur-historique.be"
+      article_local_path:
+        description: "Copie de l'article deposee dans CE depot (ex. sources/dubois-tihon.be/mon-article.fr.mdx). Mode par defaut de /blog : aucun jeton requis. Si rempli, article_repo et article_path sont ignores."
+        required: false
       article_repo:
-        description: "Repo GitHub contenant le fichier de l'article (owner/repo)"
-        required: true
+        description: "Ancien mode : repo GitHub contenant l'article (owner/repo), lu avec le secret ARTICLE_SOURCE_TOKEN"
+        required: false
         default: "Coeur-Historique/myselion4nonprofit"
       article_path:
-        description: "Chemin du fichier .mdx dans article_repo (ex. src/content/blog/mon-article.fr.mdx)"
-        required: true
+        description: "Ancien mode : chemin du fichier .mdx dans article_repo"
+        required: false
       article_ref:
         description: "Branche/ref du repo source pour l'article (vide = branche par defaut du repo -- necessaire si l'article n'est pas encore merge)"
         required: false
@@ -34,7 +37,7 @@ on:
       voice:
         description: "Nom de la voix Google Cloud TTS (confirmer avec npm run list-voices)"
         required: false
-        default: "fr-FR-Studio-A"
+        default: "fr-FR-Chirp3-HD-Aoede"
 
 permissions:
   contents: write
@@ -55,7 +58,15 @@ jobs:
           sudo apt-get install -y ffmpeg
           ffmpeg -version
 
-      - name: Récupérer le fichier de l'article depuis le repo source
+      - name: Lire la copie de l'article deposee dans ce depot (mode par defaut, sans jeton)
+        if: ${{ inputs.article_local_path != '' }}
+        run: |
+          mkdir -p /tmp/article
+          test -s "${{ inputs.article_local_path }}" || (echo "Copie de l'article introuvable : ${{ inputs.article_local_path }}" && exit 1)
+          cp "${{ inputs.article_local_path }}" /tmp/article/source.mdx
+
+      - name: Récupérer le fichier de l'article depuis le repo source (ancien mode, jeton requis)
+        if: ${{ inputs.article_local_path == '' }}
         # Le GITHUB_TOKEN par défaut n'a accès qu'à CE repo (MASTER-TTS) -- myselion4nonprofit
         # étant un repo distinct (et privé), il faut un token avec accès en lecture dessus.
         # Secret à créer sur MASTER-TTS : ARTICLE_SOURCE_TOKEN (PAT fine-grained, lecture seule,
